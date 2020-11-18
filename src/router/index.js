@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import New from '../views/new.vue'
 
+const about = () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+const user = () => import(/* webpackChunkName: "about" */ '../views/User.vue')
+
 const routes = [
   {
     path: '/',  //首页默认的路由
@@ -16,12 +19,17 @@ const routes = [
     path: '/about',
     name: 'About',
     // 直接通过箭头函数通向组件
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: about
   },
   {
     path: '/new',
     name: 'new',
     component: New
+  },
+  {
+    path: '/user/:userid',
+    name: 'user',
+    component: user
   }
 ]
 

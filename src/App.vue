@@ -1,10 +1,11 @@
 <template>
   <div id="nav">
     <!-- active-class: 能修改被点击后所赋予的class属性值 -->
-    <!-- tag、replace属性在cli4中无法进行使用 -->
+    <!-- tag：修改渲染的标签、replace：修改跳转模式  属性在cli4中无法进行使用 -->
     <router-link to="/home">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/new">new1</router-link>
+    <router-link to="/new">new</router-link> |
+    <router-link :to="'/user/' + userId">User</router-link>
     <br><br>
     <!-- 通过代码来跳转路由 -->
     <button @click="homeclick">按钮一</button>
@@ -17,9 +18,15 @@
 <script>
   export default {
     name: 'App',
+    data() {
+      return {
+        userId: 'lisi'
+      }
+    },
     methods: {
       homeclick() {
         //通过代码方式修改路由 vue-router
+        //$router是拿出根router
         this.$router.push('/home');
 
         // console.log('asd')
