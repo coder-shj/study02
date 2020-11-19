@@ -4,15 +4,20 @@
     <!-- tag：修改渲染的标签、replace：修改跳转模式  属性在cli4中无法进行使用 -->
     <router-link to="/home">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/new">new</router-link> |
-    <router-link :to="'/user/' + userId">User</router-link>
+    <router-link :to="'/user/' + userId">User</router-link> |
+    <router-link :to="{path: '/profile', query:{name: 'why', age: 18, hight: 1.88}}">profile</router-link>
     <br><br>
     <!-- 通过代码来跳转路由 -->
-    <button @click="homeclick">按钮一</button>
-    <button @click="aboutclick">按钮二</button>
-    <button @click="newclick">按钮三</button>
+    <button @click="homeclick">Home</button> |
+    <button @click="aboutclick">About</button> |
+    <button @click="userclick">User</button> |
+    <button @click="profileclick">profile</button>
   </div>
-  <router-view/>
+
+  <keep-alive include="Home">
+      <router-view></router-view>
+  </keep-alive>
+
 </template>
 
 <script>
@@ -38,8 +43,19 @@
 
         // console.log('22sd')
       },
-      newclick() {
-        this.$router.push('/new');
+      userclick() {
+        // console.log('123')
+        this.$router.push('/user/' + this.userId);
+      },
+      profileclick() {
+        this.$router.push({
+          path: '/profile',
+          query: {
+            name: 'koby',
+            age: 20,
+            high: 1.90
+          }
+        });
       }
     }
   }
